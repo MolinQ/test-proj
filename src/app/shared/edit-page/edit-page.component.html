@@ -1,0 +1,97 @@
+<form
+  [formGroup]="editForm"
+  class="edit-wrapper"
+  (ngSubmit)="UpdatePost()"
+
+>
+
+  <h1>Edit</h1>
+  <div
+    class="form-control"
+  >
+    <input
+      id="date"
+      formControlName="date"
+      class="edit-date-input"
+      placeholder="Date"
+    >
+
+  </div>
+
+
+
+  <input
+    formControlName="hours"
+    id="time"
+    class="edit-time-input"
+    placeholder="Time"
+  >
+
+  <input
+    formControlName="message"
+    class="edit-text-input">
+
+
+
+  <label
+    id="post-text"
+    for="checkbox"
+    class="checkbox-label"
+  >
+    Is complete
+
+  </label>
+
+  <input
+    formControlName="done"
+    type="checkbox"
+    class="edit-checkbox-input"
+    id="checkbox">
+
+  <a>
+    <img
+      class="delete-button"
+      alt="none"
+      src="../../../assets/images/delete.png"
+      (click)="modalOn()"
+    >
+  </a>
+
+  <button
+    type="submit"
+    class="edit-button">
+    Edit
+  </button>
+
+  <div class="modal-window-wrapper"
+  *ngIf="modalActive"
+  >
+    <p>
+      <strong>Delete task</strong>
+      <small>Are you sure you want to delete this task?</small>
+    </p>
+
+    <div class="modal-button">
+    <button
+      (click)="modalOff()"
+      class="cancel-button">
+    No
+    </button>
+
+      <button
+        (click)="delete(editForm.value.id)"
+        class="accept-button">
+    Yes
+    </button>
+    </div>
+    </div>
+  <div
+    class="modal-effect"
+    *ngIf="modalActive"
+  ></div>
+
+
+</form>
+
+
+

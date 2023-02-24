@@ -1,0 +1,315 @@
+
+input {
+  border: none;
+}
+
+input {
+  font-family: 'MuseoModerno', Inter sans-serif;
+  color: #C1C0C2;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19.1847px;
+  line-height: 133%;
+  padding: 0 30px;
+}
+
+
+
+
+input::placeholder {
+  position: absolute;
+  width: 45px;
+  height: 26px;
+  left: 33px;
+  top: calc(50% - 26px/2);
+
+  font-family: 'MuseoModerno', Inter sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19.1847px;
+  line-height: 133%;
+  /* identical to box height, or 26px */
+
+
+  color: #625F65;
+}
+
+.edit-wrapper {
+  /* Add new */
+
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 387px;
+  min-height: 812px;
+  height: 838px;
+
+  /* brand/neutrals/black */
+
+  background: #1F1E22;
+
+  h1 {
+    /* Add new */
+
+
+    width: 232px;
+    height: 62px;
+
+    font-family: 'MuseoModerno', Inter sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 133%;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 5rem;
+    /* or 48px */
+    //
+    //display: flex;
+    //align-items: center;
+    //text-align: center;
+
+    /* brand/cream */
+
+    color: #F6EAD4;
+  }
+
+  .edit-date-input {
+    /* text input */
+
+
+    position: absolute;
+    width: 280px;
+    height: 62px;
+    left: 20px;
+    top: 181px;
+
+    background: #312F36;
+    border-radius: 134px;
+  }
+
+
+
+  .edit-time-input {
+    /* text input */
+
+
+    position: absolute;
+    width: 280px;
+    height: 62px;
+    left: 19px;
+    top: 278px;
+
+    background: #312F36;
+    border-radius: 134px;
+  }
+
+  .edit-text-input {
+    /* text input */
+
+
+    position: absolute;
+    width: 280px;
+    height: 236px;
+    left: 19px;
+    top: 375px;
+
+    background: #312F36;
+    border-radius: 37px;
+  }
+
+  .edit-checkbox-input {
+    /* Rectangle 12 */
+
+
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 25px;
+    top: 637px;
+
+    background: #43404B;
+    border-radius: 4px;
+
+  }
+
+  .checkbox-label {
+    position: absolute;
+
+    left: 56px;
+    top: 637px;
+
+    font-family: 'MuseoModerno', Inter sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 133%;
+    /* or 21px */
+
+
+    color: #C1C0C2;
+  }
+
+  .edit-button {
+    position: absolute;
+    width: 335px;
+    height: 62px;
+    left: 19px;
+    top: 717px;
+
+    background: #686082;
+    border-radius: 134px;
+    border: none;
+
+    font-family: 'MuseoModerno', Inter sans-serif;
+    /* Create */
+
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 133%;
+    /* or 32px */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+
+    color: #F6EAD4;
+
+    &:disabled {
+      cursor: not-allowed;
+      color: #111;
+      background: #6860824f;
+    }
+  }
+
+  .validation-date {
+    font-family: 'MuseoModerno', Inter sans-serif;
+    color: red;
+    position: absolute;
+    top: 475px;
+    left: 50px;
+  }
+
+  .validation-password {
+    font-family: 'MuseoModerno', Inter sans-serif;
+    color: red;
+    position: absolute;
+    top: 567px;
+    left: 50px;
+  }
+  .delete-button{
+    position: absolute;
+    top: 640px;
+    left: 340px;
+
+  }
+
+  .modal-window-wrapper{
+    z-index: 2;
+    margin: 0 auto;
+    position: relative;
+    right: 4px;
+    top: 190px;
+    width: 310px;
+
+    background: #FAFAFA;
+    /* 24dp — Elevation */
+
+    box-shadow: 0 24px 38px rgba(0, 0, 0, 0.14), 0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+
+
+
+    p{
+      position: relative;
+      left: 24px;
+      right: 24px;
+      top: 24px;
+      bottom: 72px;
+
+      font-family: 'MuseoModerno', Inter sans-serif;
+
+      display: flex;
+      flex-wrap: wrap;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      /* or 120% */
+
+
+      color: rgba(0, 0, 0, 0.87);
+    }
+
+    strong{
+      padding-bottom: 10px;
+    }
+
+    small{
+      width: 250px;
+    }
+
+    .accept-button{
+      width: 76px;
+      height: 31px;
+
+      background:rgba(104, 96, 130, 1);
+    ;
+      border-radius: 134px;
+      border: none;
+
+      font-family: 'MuseoModerno', Inter sans-serif;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 133%;
+      /* or 19px */
+
+
+      color: #F6EAD4
+    }
+    .cancel-button{
+
+      width: 76px;
+      height: 31px;
+
+      border: none;
+      background: #312F36;
+      border-radius: 134px;
+
+      font-family: 'MuseoModerno', Inter sans-serif;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 133%;
+      /* or 19px */
+
+      margin-right: 10px;
+      color: #F6EAD4
+    }
+
+    .modal-button {
+      margin-right: 16px;
+      padding-top: 30px;
+      padding-bottom: 15px;
+      display: flex;
+      justify-content: end;
+    }
+
+  }
+
+  .modal-effect{
+    content: '';
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    background-color: rgba(0,0,0,0.5);
+  }
+
+
+}

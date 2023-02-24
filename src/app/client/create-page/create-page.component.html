@@ -1,0 +1,58 @@
+<form
+  class="create-post"
+  [formGroup]="createForm"
+  (ngSubmit)="submit()"
+>
+
+<h1>Add new</h1>
+
+  <input
+    id="date"
+    formControlName="date"
+    class="date"
+    type="Date"
+    placeholder="Date"
+
+  >
+
+
+  <input
+    formControlName="hours"
+    id="time"
+    class="time"
+    type="Time"
+    placeholder="Time"
+  >
+
+
+  <input
+    formControlName="message"
+    type="string"
+    class="text">
+
+
+  <label
+    id="post-text"
+    for="checkbox"
+    class="checkbox-label"
+  >Is complete
+  </label>
+
+  <input
+    formControlName="done"
+    type="checkbox"
+    class="checkbox-input"
+    id="checkbox">
+
+
+
+  <button
+    [disabled]="createForm.invalid"
+    type="submit"
+    class="create-button">
+    Create
+  </button>
+
+
+
+</form>

@@ -1,0 +1,73 @@
+<form class="registration-wrapper" [formGroup]="form" (ngSubmit)="submit()">
+
+  <h1>Registration</h1>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid:form.get('name').touched && form.get('name').invalid}"
+    >
+
+    <input
+      formControlName="name"
+      type="text"
+      id="registration"
+      placeholder="login"
+    >
+
+    <div
+      class="validation-email"
+      *ngIf="form.get('name').touched && form.get('name').invalid"
+    >
+      <small
+        *ngIf="form.get('name').errors.required"
+      >Enter email
+      </small>
+  </div>
+  </div>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid:form.get('password').touched && form.get('password').invalid}"
+
+  >
+
+    <input
+      formControlName="password"
+      type="password"
+      id="password"
+      placeholder="password"
+    >
+
+    <div
+      class="validation-password"
+      *ngIf="form.get('password').touched && form.get('password').invalid"
+    >
+      <small
+        *ngIf="form.get('password').errors.required"
+      >Enter password
+      </small>
+
+      <small
+        *ngIf="form.get('password').errors.minlength"
+      >Password is too short.Please enter at least
+        {{form.get('password').errors.minlength.requiredLength}} characters
+        now(
+        {{form.get('password').errors.minlength.actualLength}})</small>
+    </div>
+
+
+
+  </div>
+
+
+
+
+  <button
+    class="registration-button"
+    type="submit"
+    [disabled]="form.invalid"
+  >
+    Login
+  </button>
+
+</form>
