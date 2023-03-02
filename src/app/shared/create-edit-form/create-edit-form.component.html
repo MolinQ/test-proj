@@ -1,54 +1,58 @@
 <form
-  [formGroup]="editForm"
-  class="edit-wrapper"
-  (ngSubmit)="UpdatePost()"
-
+  [formGroup]="Form"
+  (ngSubmit)="submit()"
+  class="form-wrapper"
 >
 
-  <h1>Edit</h1>
+  <h1
+    *ngIf="showEdit">
+    Edit
+  </h1>
+  <h1
+    *ngIf="showCreate">
+    Add new
+  </h1>
+
   <div
     class="form-control"
   >
     <input
       id="date"
       formControlName="date"
-      class="edit-date-input"
+      type="Date"
+      class="form-date-input"
       placeholder="Date"
     >
 
   </div>
-
-
-
   <input
     formControlName="hours"
     id="time"
-    class="edit-time-input"
-    placeholder="Time"
-  >
+    type="Time"
+    class="form-time-input"
+    placeholder="Time">
 
-  <input
+  <textarea
+    placeholder="Note"
     formControlName="message"
-    class="edit-text-input">
-
+    class="form-text-input">
+  </textarea>
 
 
   <label
     id="post-text"
     for="checkbox"
-    class="checkbox-label"
-  >
+    class="checkbox-label">
     Is complete
-
   </label>
 
   <input
     formControlName="done"
     type="checkbox"
-    class="edit-checkbox-input"
+    class="form-checkbox-input"
     id="checkbox">
 
-  <a>
+  <a *ngIf="showEdit">
     <img
       class="delete-button"
       alt="none"
@@ -58,13 +62,23 @@
   </a>
 
   <button
+    [disabled]="Form.invalid"
     type="submit"
+    *ngIf="showEdit"
     class="edit-button">
     Edit
   </button>
 
+  <button
+    [disabled]="Form.invalid"
+    type="submit"
+    *ngIf="showCreate"
+    class="create-button">
+    Create
+  </button>
+
   <div class="modal-window-wrapper"
-  *ngIf="modalActive"
+       *ngIf="modalActive"
   >
     <p>
       <strong>Delete task</strong>
@@ -72,19 +86,20 @@
     </p>
 
     <div class="modal-button">
-    <button
-      (click)="modalOff()"
-      class="cancel-button">
-    No
-    </button>
+      <button
+        (click)="modalOff()"
+        class="cancel-button">
+        No
+      </button>
 
       <button
-        (click)="delete(editForm.value.id)"
+        (click)="delete(Form.value.id)"
         class="accept-button">
-    Yes
-    </button>
+        Yes
+      </button>
+
     </div>
-    </div>
+  </div>
   <div
     class="modal-effect"
     *ngIf="modalActive"

@@ -63,11 +63,12 @@
 
 
   <button
+    [disabled]="form.invalid"
     class="registration-button"
     type="submit"
-    [disabled]="form.invalid"
+
   >
-    Login
+    Registration
   </button>
 
 </form>

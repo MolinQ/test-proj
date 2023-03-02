@@ -10,6 +10,8 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PostService{
   public CurrentPost:any
+  public isClientEdit:boolean = false
+  public isAdminEdit:boolean = false
 
   constructor(private http:HttpClient) {}
 
@@ -19,7 +21,7 @@ export class PostService{
     return this.http.get('http://localhost:3000/api/track')
   }
 
-  createPost(post:Post):Observable<Post> {
+  createPost(post):Observable<Post> {
     return this.http.post<Post>('http://localhost:3000/api/track',post)
   }
 

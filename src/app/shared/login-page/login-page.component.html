@@ -15,7 +15,6 @@ placeholder="login"
   <div
     class="form-control"
     [ngClass]="{invalid:form.get('password').touched && form.get('password').invalid}"
-
   >
 
     <input
@@ -24,6 +23,15 @@ placeholder="login"
     id="password"
     placeholder="password"
     >
+    <div
+      class="validation-email"
+      *ngIf="form.get('name').touched && form.get('name').invalid"
+    >
+      <small
+        *ngIf="form.get('name').errors.required"
+      >Enter email
+      </small>
+    </div>
 
     <div
       class="validation-password"
@@ -34,12 +42,12 @@ placeholder="login"
       >Enter password
       </small>
 
-      <small
-        *ngIf="form.get('password').errors.minlength"
-      >Password is too short.Please enter at least
-        {{form.get('password').errors.minlength.requiredLength}} characters
-        now(
-        {{form.get('password').errors.minlength.actualLength}})</small>
+<!--      <small-->
+<!--        *ngIf="form.get('password').errors.minlength"-->
+<!--      >Password is too short.Please enter at least-->
+<!--        {{form.get('password').errors.minlength.requiredLength}} characters-->
+<!--        now(-->
+<!--        {{form.get('password').errors.minlength.actualLength}})</small>-->
 
     </div>
 
@@ -53,7 +61,6 @@ placeholder="login"
   <button
 class="Login-button"
 type="submit"
-[disabled]="form.invalid "
   >
   Login
   </button>
