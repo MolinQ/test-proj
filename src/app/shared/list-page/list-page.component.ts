@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {PostService} from "../services/post.service";
 import {Router} from "@angular/router";
@@ -28,7 +28,8 @@ export class ListPageComponent implements OnInit {
     public auth:AuthService,
     private postService:PostService,
     private AdminService: AdminService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {}
 
 
@@ -37,6 +38,7 @@ export class ListPageComponent implements OnInit {
     this.postService.getPost().subscribe(
       (response) =>{
         this.collection = response
+        this.collection.cd
       }
     )
     if (this.showAdminPost){
