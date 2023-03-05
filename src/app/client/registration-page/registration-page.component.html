@@ -1,74 +1,67 @@
-<form class="registration-wrapper" [formGroup]="form" (ngSubmit)="submit()">
+<form 
+class="registration-form"
+[formGroup]="form" (ngSubmit)="submit()">
 
   <h1>Registration</h1>
 
-  <div
-    class="form-control"
-    [ngClass]="{invalid:form.get('name').touched && form.get('name').invalid}"
+  <div class="registration-form-input-wrapper">
+
+    <input
+      [ngClass]="{invalid:form.get('name').touched && form.get('name').invalid}"
+      formControlName="name"
+      type="text"
+      class="login-form-input-email"
+      id="registration"
+      placeholder="Login"
     >
 
     <input
-      formControlName="name"
-      type="text"
-      id="registration"
-      placeholder="login"
+      [ngClass]="{invalid:form.get('password').touched && form.get('password').invalid}"
+      formControlName="password"
+      type="password"
+      id="password"
+      placeholder="Password"
     >
-
+    </div>
     <div
-      class="validation-email"
+      class="registration-form-error"
       *ngIf="form.get('name').touched && form.get('name').invalid"
     >
       <small
+      class="enter-email"
         *ngIf="form.get('name').errors.required"
       >Enter email
       </small>
   </div>
-  </div>
-
-  <div
-    class="form-control"
-    [ngClass]="{invalid:form.get('password').touched && form.get('password').invalid}"
-
-  >
-
-    <input
-      formControlName="password"
-      type="password"
-      id="password"
-      placeholder="password"
-    >
 
     <div
-      class="validation-password"
-      *ngIf="form.get('password').touched && form.get('password').invalid"
+      class="registration-form-error"
+      *ngIf="form.get('password').dirty && form.get('password').invalid"
     >
-      <small
+      <small class="enter-password"
         *ngIf="form.get('password').errors.required"
       >Enter password
       </small>
 
       <small
         *ngIf="form.get('password').errors.minlength"
-      >Password is too short.Please enter at least
+      >Password is too short.
+      <br/>Please enter at least
         {{form.get('password').errors.minlength.requiredLength}} characters
         now(
-        {{form.get('password').errors.minlength.actualLength}})</small>
+        {{form.get('password').errors.minlength.actualLength}})
+      </small>
     </div>
-
-
-
-  </div>
-
 
 
 
   <button
     [disabled]="form.invalid"
-    class="registration-button"
+    class="btn-submit"
     type="submit"
 
   >
-    Registration
+  Create account
   </button>
 
 </form>

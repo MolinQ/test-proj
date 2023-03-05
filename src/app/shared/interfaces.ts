@@ -1,9 +1,9 @@
-export interface User{
+export interface User {
   name:string
   password:string
 }
 
-export interface Post{
+export interface Post {
   id?:number
   date: Date
   hours: number
@@ -11,7 +11,7 @@ export interface Post{
   done: boolean
 }
 
-export interface UserPost{
+export interface UserPost {
   id:number
   post:any
 }

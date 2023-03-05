@@ -1,54 +1,61 @@
-import {Injectable} from "@angular/core";
-import {Post, User} from "../interfaces";
-import {HttpClient} from "@angular/common/http";
-import {Observable, tap} from "rxjs";
-import {Router} from "@angular/router";
+import { Injectable } from '@angular/core';
+import { User } from '../interfaces';
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 
 @Injectable({
-  providedIn:"root"
+  providedIn:'root',
 })
 
 
-export class AuthService{
+export class AuthService {
 
-  private token= null
-  public userName:string
-  public userId:any
+  private token = null;
+
+  public userName:string;
+
+  public userId:any;
   
   constructor(
     private http: HttpClient,
-    private router:Router
+    private router:Router,
   ) {
   }
 
   register(user:User):Observable<User> {
-   return this.http.post<User>('http://localhost:3000/api/auth/sign-up',user)
+    return this.http.post<User>('http://localhost:3000/api/auth/sign-up', user);
   }
-  logIn(user:User): Observable<{token:string}> {
-   return this.http.post<{token:string}>('http://localhost:3000/api/auth/sign-in',user)
-     .pipe(
-       tap(({token})=>{
-         localStorage.setItem('auth-token', token)
-         this.setToken(token)
-         this.setNameToken(user.name)
-         localStorage.setItem('user-name', user.name)
 
-       })
-     )
+  logIn(user:User): Observable<{ token:string }> {
+    return this.http.post<{ token:string }>('http://localhost:3000/api/auth/sign-in', user)
+      .pipe(
+        tap(({ token })=>{
+          localStorage.setItem('auth-token', token);
+          this.setToken(token);
+          this.setNameToken(user.name);
+          localStorage.setItem('user-name', user.name);
+
+        }),
+      );
   }
+
   setToken(token:string) {
-    this.token = token
+    this.token = token;
   }
+
   getToken():string {
-    return this.token
+    return this.token;
   }
+
   setNameToken(user:string) {
-    this.userName = user
+    this.userName = user;
   }
+
   getUserName() {
-    return this.userName
+    return this.userName;
   }
 
   isAdmin(): boolean {
@@ -56,17 +63,17 @@ export class AuthService{
   }
 
   isUser():boolean {
-      return this.getUserName() !== 'Admin';
+    return this.getUserName() !== 'Admin';
   }
 
-  isAuthenticated():boolean{
-    return !!this.token
+  isAuthenticated():boolean {
+    return !!this.token;
   }
 
-  logOut(){
-    this.setToken(null)
-    localStorage.clear()
-    this.router.navigate(['/login'])
+  logOut() {
+    this.setToken(null);
+    localStorage.clear();
+    this.router.navigate(['/login']);
 
   }
 
