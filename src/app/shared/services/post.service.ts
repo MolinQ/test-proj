@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../interfaces';
-import { Observable } from 'rxjs';
+import { Observable, Subject  } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -14,6 +14,9 @@ export class PostService {
   public isClientEdit:boolean = false;
 
   public isAdminEdit:boolean = false;
+
+
+  private postsSubject = new Subject<any[]>();
 
   constructor(private http:HttpClient) {}
 

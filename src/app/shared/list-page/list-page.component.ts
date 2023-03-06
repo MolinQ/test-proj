@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, NO_ERRORS_SCHEMA } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { PostService } from '../services/post.service';
 import { Router } from '@angular/router';
@@ -17,6 +17,7 @@ export class ListPageComponent implements OnInit {
 
   @Input() showAdminPost: boolean;
 
+
   users:any;
 
   userPost:any = [];
@@ -25,7 +26,7 @@ export class ListPageComponent implements OnInit {
 
   selectedPost: any;
 
-  collection:any;
+  collection:any = [];
 
   searchText: string = '';
 
@@ -35,18 +36,19 @@ export class ListPageComponent implements OnInit {
     private postService:PostService,
     private AdminServices: AdminService,
     private router: Router,
-    private changed: ChangeDetectorRef,
+    private changeDetection: ChangeDetectorRef,
   ) {}
 
-
-
   ngOnInit(): void {
-    this.postService.getPost().subscribe(
-      (response) =>{
-        this.collection = response;
-        this.collection = this.collection.changed;
-      },
-    );
+    console.log(this.showClientPost);
+    console.log(this.showAdminPost);
+    if (this.showClientPost) {
+      this.postService.getPost().subscribe(
+        (response) =>{
+          this.collection = response;
+        },
+      );
+    }
     if (this.showAdminPost) {
       this.users = this.postService.getUsers().pipe(
         map(user => {
@@ -70,7 +72,9 @@ export class ListPageComponent implements OnInit {
   }
 
   filterPosts() {
-    return this.collection.filter((post:any) => post.message.includes(this.searchText));
+    if (this.collection) {
+      return this.collection.filter((post:any) => post.message.includes(this.searchText));
+    }
   }
 
   filterAdminPosts(posts:any) {

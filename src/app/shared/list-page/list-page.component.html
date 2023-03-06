@@ -7,26 +7,26 @@
       (click)="auth.logOut()"
       src="../../../assets/images/logout.png"  alt="none">
   </a>
-
-  <h1>List</h1>
-
+  <div class="list-upper-line" >
+   <h1>List</h1>
   <button
     *ngIf="showCreateButton"
     type="button"
     class="add-new-post-button"
-    routerLink="/client/list/new"
-  >
-    New +
+    routerLink="/client/list/new" >
+  New +
   </button>
+</div>
 
+<div class="search-post-position">
   <input
     id="search"
-    class="search-post"
+    class="list-form-search-post"
     placeholder="Search"
     type="text"
     [(ngModel)]="searchText"
   >
-
+</div>
   <div
     class="show-if-client"
     *ngIf="showClientPost"
@@ -34,9 +34,9 @@
   <div
     class="posts-container">
         <div
-          class="post-wrapper"
-          *ngFor="let item of filterPosts(),let idx=index"
-          [class.approved]="item.done"
+        class="post-wrapper"
+        [class.approved]="item.done"
+          *ngFor="let item of filterPosts(), let idx=index"
           (click)="selectPostClient(item)"
         >
           <strong class="post-text">
@@ -59,6 +59,7 @@
       </div>
   </div>
 
+  <div class="show-if-admin-wrapper">
   <div
     class="show-if-admin"
     *ngIf="showAdminPost"
@@ -103,7 +104,7 @@
     </ng-container>
   </div>
   </div>
-
+</div>
 </div>
 
 

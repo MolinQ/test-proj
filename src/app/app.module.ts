@@ -33,8 +33,6 @@ import { CreatePageComponent } from './shared/create-edit-form/create-page/creat
     EditClientPageComponent,
     EditAdminPageComponent,
     CreatePageComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -43,16 +41,14 @@ import { CreatePageComponent } from './shared/create-edit-form/create-page/creat
     HttpClientModule,
     CommonModule,
     FormsModule,
-
   ],
-  providers:
-
-    [
-      {
-        provide:HTTP_INTERCEPTORS,
-        multi:true,
-        useClass:TokenInterceptor },
-    ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptor,
+    },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

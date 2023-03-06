@@ -1,61 +1,54 @@
 .log-out {
-  position: absolute;
-  top: 10px;
-  left: 10px;
   width: 1.5rem;
-  border-radius: 10px;
+  border-radius: .5rem;
+  margin: 0 auto;
+  margin: 1rem;
 }
 
 
 .list-form {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-height: 812px;
-  height: 100%;
-  width: 375px;
-  background: #1F1E22;
-
+   height: 100vh;
+  background-color: #1f1e22;
 
   h1 {
-
-
-    font-family: 'MuseoModerno', Inter sans-serif;
+    font-family: "MuseoModerno", Inter sans-serif;
     font-style: normal;
     font-weight: 800;
-    font-size: 36px;
+    font-size: 1.8rem;
     line-height: 133%;
-    /* or 48px */
 
     text-align: center;
 
-    /* brand/cream */
-
-    color: #F6EAD4;
-
+    color: #f6ead4;
+    
   }
 
+  .list-upper-line {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+
   .add-new-post-button {
+    padding: .0rem 1rem;
+    margin-right: -5.3rem;
+    order: 2;
 
+    width: 4.85rem;
+    height: 2.2rem;
 
-    padding: 10px 20px;
-
-    position: absolute;
-    width: 97px;
-    height: 44px;
-    left: 234px;
-    top: 27px;
 
     background: rgba(255, 255, 255, 0.09);
-    border-radius: 60px;
+    border-radius: 3rem;
     border: none;
 
     //  text
     font-family: 'MuseoModerno', Inter sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 15px;
-    line-height: 24px;
+    font-size: 0.75rem;
+    line-height: 1.05rem;
     /* identical to box height */
 
 
@@ -66,114 +59,97 @@
 
 
   input {
+    height: 3.1rem;
+    width: 16.75rem;
+    margin-top: 1.7rem;
+    background: rgba(49, 47, 54, 1);
+    border: none;
+    border-radius: 6.7rem;
+    -webkit-box-shadow: inset 0 0 0 2.5rem #312F36;
+    -webkit-text-fill-color: #fff;
+
+
     font-family: 'MuseoModerno', Inter sans-serif;
     color: #C1C0C2;
     font-style: normal;
     font-weight: 500;
-    font-size: 19.1847px;
+    font-size: 0.95rem;
     line-height: 133%;
-    padding: 0 30px;
+    padding: 0 1.5rem;
 
 
-
-    width: 275px;
-    height: 62px;
-    margin: 0 auto;
-    display: flex;
-
-    background: #312F36;
-    border-radius: 134px;
-    border:none;
-
-    -webkit-box-shadow: inset 0 0 0 50px #312F36;
-    -webkit-text-fill-color: white;
     &::placeholder {
-      position: absolute;
-      top: 15px;
-      left: 30px;
       font-family: 'MuseoModerno', Inter sans-serif;
-      font-style: normal;
       font-weight: 500;
-      font-size: 19.1847px;
+      font-size: 0.95rem;
       line-height: 133%;
+      /* identical to box height, or 26px */
+      color: #625F65;
+  
       -webkit-text-fill-color: rgba(98, 95, 101, 1);
     }
   }
 
-
-
-  //  post
-
-  posts {
-    margin-top: 2rem;
+  .search-post-position {
+    display: flex;
+    justify-content: center;
   }
 
+
   .post-wrapper {
-
-
     &.approved {
       background-color: #272f28;
-      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 8px
+      box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
+      border-radius: 0.4rem
     }
-
 
     /* Auto layout */
 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 6rem;
-    padding-left: 1rem;
-    width: 330px;
-    height: 142px;
-    margin-top: 1.4rem;
+    gap: 4.2rem;
+    width: 17.45rem;
+    height: 7.1rem;
+    margin-top: 0.85rem;
+    margin-bottom: 0.85rem;
+    padding: 0.2rem 0.5rem  ;
 
     background: #201D1E;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
+    box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
+    border-radius: 0.4rem;
 
 
     .post-text {
-      width: 329px;
-      height: 17.74px;
-        word-wrap:break-word ;
+      word-wrap:break-word ;
 
       font-family: 'MuseoModerno', Inter sans-serif;
       font-style: normal;
       font-weight: 500;
-      font-size: 17px;
-      line-height: 27px;
+      font-size: 0.85rem;
+      line-height: 1.35rem;
 
       color: #FFFFFF;
     }
 
     .post-date {
-      //position: absolute;
-      width: 104px;
-      height: 14.11px;
-      //left: 235px;
-      //top: 111px;
 
       font-family: 'MuseoModerno', Inter sans-serif;
       font-style: normal;
       font-weight: 500;
-      font-size: 17px;
-      line-height: 27px;
+      font-size: 0.85rem;
+      line-height: 1.35rem;
 
       color: #999999;
     }
 
     .post-time {
-      width: 104px;
-      height: 14.11px;
-
 
       font-family: 'MuseoModerno', Inter sans-serif;
       font-style: normal;
       font-weight: 500;
-      font-size: 17px;
-      line-height: 27px;
+      font-size: 0.85rem;
+      line-height: 1.35rem;
 
       color: #999999;
     }
@@ -186,8 +162,22 @@
     }
 
   }
-  .posts-container {
-    margin-left: 1rem;
+  .show-if {
+    &-client {
+    display: flex;
+    justify-content: center;
+    background-color: #1f1e22;
+    }
+
+    &-admin {
+        margin: 0 auto;
+        margin-top: 1.75rem;
+    }
+  }
+
+  .show-if-admin-wrapper {
+    display:flex;
+    background-color: #1f1e22;
   }
 
   .User_name {
@@ -195,12 +185,13 @@
     font-family: 'MuseoModerno', Inter sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 17px;
-    line-height: 27px;
-    margin-bottom: 0;
+    font-size: 0.85rem;
+    line-height: 1.35rem;
 
     color: #FFFFFF;
   }
+
+
 }
 
 
