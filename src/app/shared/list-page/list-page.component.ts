@@ -17,23 +17,21 @@ export class ListPageComponent implements OnInit {
 
   @Input() showAdminPost: boolean;
 
+  users: any;
 
-  users:any;
+  userPost: any = [];
 
-  userPost:any = [];
-
-  usersInPost:any = [];
+  usersInPost: any = [];
 
   selectedPost: any;
 
-  collection:any = [];
+  collection: any = [];
 
   searchText: string = '';
 
-
   constructor(
-    public auth:AuthService,
-    private postService:PostService,
+    public auth: AuthService,
+    private postService: PostService,
     private AdminServices: AdminService,
     private router: Router,
     private changeDetection: ChangeDetectorRef,
@@ -44,43 +42,45 @@ export class ListPageComponent implements OnInit {
     this.postService.isClientEdit = false;
     this.postService.isCreatePost = false;
     if (this.showClientPost) {
-      this.postService.getPost().subscribe(
-        (response) => {
-          this.changeDetection.detectChanges();
-          this.collection = response;
-        },
-      );
+      this.postService.getPost().subscribe((response) => {
+        this.changeDetection.detectChanges();
+        this.collection = response;
+      });
     }
     if (this.showAdminPost) {
-      this.users = this.postService.getUsers().pipe(
-        map(user => {
-          return user;
-        }),
-      ).toPromise().then(response => {
-        this.users = response;
-        this.users.forEach((user:any) => {
-          this.postService.getAdminPost(user.id).subscribe(
-            (resp)=> {
-              let post:any = resp;
+      this.users = this.postService
+        .getUsers()
+        .pipe(
+          map((user) => {
+            return user;
+          })
+        )
+        .toPromise()
+        .then((response) => {
+          this.users = response;
+          this.users.forEach((user: any) => {
+            this.postService.getAdminPost(user.id).subscribe((resp) => {
+              let post: any = resp;
               if (post.length !== 0) {
                 this.userPost.push(post);
                 this.usersInPost.push(user);
               }
             });
+          });
         });
-      });
-
     }
   }
 
   filterPosts() {
     if (this.collection) {
-      return this.collection.filter((post:any) => post.message.includes(this.searchText));
+      return this.collection.filter((post: any) =>
+        post.message.includes(this.searchText),
+      );
     }
   }
 
-  filterAdminPosts(posts:any) {
-    return posts.filter((post:any) => post.message.includes(this.searchText));
+  filterAdminPosts(posts: any) {
+    return posts.filter((post: any) => post.message.includes(this.searchText));
   }
 
   selectPostClient(post: any) {
@@ -97,8 +97,7 @@ export class ListPageComponent implements OnInit {
   }
 
   SelectedCreatePost() {
-    this.postService.isCreatePost = true; 
+    this.postService.isCreatePost = true;
     this.router.navigate(['/client', 'list', 'new']);
   }
-
 }

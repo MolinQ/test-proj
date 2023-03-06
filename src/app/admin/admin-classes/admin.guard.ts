@@ -1,23 +1,15 @@
-import {
-  CanActivate,
-  Router,
-} from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
 import { Injectable } from '@angular/core';
 
-
 @Injectable({
-  providedIn:'root',
+  providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
-  constructor(
-    private auth:AuthService,
-    private router:Router,
-  ) {
-  }
+  constructor(private auth: AuthService, private router: Router) {}
 
-  canActivate():Observable<boolean> {
+  canActivate(): Observable<boolean> {
     if (this.auth.getToken()) {
       if (this.auth.isAdmin()) {
         return of(true);

@@ -11,25 +11,19 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
-
   form: FormGroup;
 
   aSub: Subscription;
-
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthService,
-  ) { }
+  ) {}
 
   ngOnInit() {
-
-
     this.form = new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-      ]),
+      name: new FormControl('', [Validators.required]),
       password: new FormControl(null, [
         Validators.required,
         Validators.minLength(8),
@@ -38,9 +32,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe((param: Params) => {
       if (param.registered) {
-      //  авторизация прошла успешно
-      } else
-      if (param.accessDenied) {
+        //  авторизация прошла успешно
+      } else if (param.accessDenied) {
         // нужно авторизоваться
       }
     });
@@ -66,4 +59,3 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     );
   }
 }
-

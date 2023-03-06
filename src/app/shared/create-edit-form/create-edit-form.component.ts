@@ -15,7 +15,7 @@ export class CreateEditFormComponent implements OnInit {
 
   @Input() showCreate: boolean;
 
-  modalActive:boolean = false;
+  modalActive: boolean = false;
 
   isNewPost: boolean = false;
 
@@ -23,11 +23,11 @@ export class CreateEditFormComponent implements OnInit {
 
   isAdmin: boolean = false;
 
-  fullTime:any = null;
+  fullTime: any = null;
 
-  post:any;
+  post: any;
 
-  Form =  new FormGroup({
+  Form = new FormGroup({
     id: new FormControl(''),
     date: new FormControl('', Validators.required),
     hours: new FormControl('', Validators.required),
@@ -36,13 +36,13 @@ export class CreateEditFormComponent implements OnInit {
   });
 
   constructor(
-    private router:Router,
-    private route:ActivatedRoute,
-    private postService:PostService,
-    private AdminServices:AdminService,
-  ) { }
+    private router: Router,
+    private route: ActivatedRoute,
+    private postService: PostService,
+    private AdminServices: AdminService
+  ) {}
 
-  formatMinutesToTime(minutes: number):string {
+  formatMinutesToTime(minutes: number): string {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     let formattedHours = '';
@@ -62,10 +62,9 @@ export class CreateEditFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.postService.isCreatePost) {
-      
       this.isNewPost = true;
-      
-      this.Form  = new FormGroup({
+
+      this.Form = new FormGroup({
         id: new FormControl(''),
         date: new FormControl('', Validators.required),
         hours: new FormControl('', Validators.required),
@@ -76,31 +75,46 @@ export class CreateEditFormComponent implements OnInit {
 
     if (this.postService.isClientEdit) {
       this.isClient = true;
-      this.postService.getCurrentPost().subscribe(
-        (response) => {
-          this.post = response;
-          this.Form = new FormGroup({
-            id: new FormControl(this.postService.CurrentPost.id),
-            date: new FormControl(this.postService.CurrentPost.date, Validators.required),
-            hours: new FormControl(this.formatMinutesToTime(this.postService.CurrentPost.hours), Validators.required),
-            message: new FormControl(this.postService.CurrentPost.message, Validators.required),
-            done: new FormControl(this.postService.CurrentPost.done),
-          });
-        },
-      );
+      this.postService.getCurrentPost().subscribe((response) => {
+        this.post = response;
+        this.Form = new FormGroup({
+          id: new FormControl(this.postService.CurrentPost.id),
+          date: new FormControl(
+            this.postService.CurrentPost.date,
+            Validators.required,
+          ),
+          hours: new FormControl(
+            this.formatMinutesToTime(this.postService.CurrentPost.hours),
+            Validators.required,
+          ),
+          message: new FormControl(
+            this.postService.CurrentPost.message,
+            Validators.required,
+          ),
+          done: new FormControl(this.postService.CurrentPost.done),
+        });
+      });
     }
 
     if (this.postService.isAdminEdit) {
       this.isAdmin = true;
       this.Form = new FormGroup({
         id: new FormControl(this.AdminServices.selectedPost.id),
-        date: new FormControl(this.AdminServices.selectedPost.date, Validators.required),
-        hours: new FormControl(this.formatMinutesToTime(this.AdminServices.selectedPost.hours), Validators.required),
-        message: new FormControl(this.AdminServices.selectedPost.message, Validators.required),
+        date: new FormControl(
+          this.AdminServices.selectedPost.date,
+          Validators.required,
+        ),
+        hours: new FormControl(
+          this.formatMinutesToTime(this.AdminServices.selectedPost.hours),
+          Validators.required,
+        ),
+        message: new FormControl(
+          this.AdminServices.selectedPost.message,
+          Validators.required,
+        ),
         done: new FormControl(this.AdminServices.selectedPost.done),
       });
     }
-
   }
 
   FormatInForm() {
@@ -108,12 +122,16 @@ export class CreateEditFormComponent implements OnInit {
     const timeString = this.Form.value.hours;
     const timeParts = timeString.split(':');
 
-    this.fullTime = (+timeParts[0] * 60) + +timeParts[1];
+    this.fullTime = +timeParts[0] * 60 + +timeParts[1];
   }
 
   submit() {
     this.FormatInForm();
-    if (this.isNewPost === true  && this.isClient === false && this.isAdmin === false) {
+    if (
+      this.isNewPost === true &&
+      this.isClient === false &&
+      this.isAdmin === false
+    ) {
       let pushPostForm = {
         date: this.Form.value.date,
         hours: +this.fullTime,
@@ -125,13 +143,17 @@ export class CreateEditFormComponent implements OnInit {
           this.router.navigate(['/client', 'list']);
           this.isNewPost = false;
         },
-        error => {
+        (error) => {
           alert(error.error.message);
         },
       );
     }
 
-    if (this.isNewPost === false  && this.isClient === true && this.isAdmin === false) {
+    if (
+      this.isNewPost === false &&
+      this.isClient === true &&
+      this.isAdmin === false
+    ) {
       let pushClientForm = {
         id: this.Form.value.id,
         date: this.Form.value.date,
@@ -139,14 +161,17 @@ export class CreateEditFormComponent implements OnInit {
         message: this.Form.value.message,
         done: this.Form.value.done,
       };
-      this.postService.updatePost( this.Form.value.id, pushClientForm).subscribe(
-        () => {
-        },
-      );
+      this.postService
+        .updatePost(this.Form.value.id, pushClientForm)
+        .subscribe(() => {});
       this.router.navigate(['/client', 'list']);
       this.isClient = false;
     }
-    if (this.isNewPost === false  && this.isClient === false && this.isAdmin === true) {
+    if (
+      this.isNewPost === false &&
+      this.isClient === false &&
+      this.isAdmin === true
+    ) {
       let pushAdminForm = {
         id: this.Form.value.id,
         date: this.Form.value.date,
@@ -155,40 +180,33 @@ export class CreateEditFormComponent implements OnInit {
         done: this.Form.value.done,
       };
       console.log(pushAdminForm);
-      this.postService.updatePost(this.Form.value.id, pushAdminForm).subscribe(
-        () => {
+      this.postService
+        .updatePost(this.Form.value.id, pushAdminForm)
+        .subscribe(() => {
           this.router.navigate(['/admin', 'list']);
           this.isAdmin = false;
-        },
-      );
-      
+        });
     }
   }
 
-  delete(item:any) {
-    
-    this.postService.deletePost(item).subscribe(
-      () => {
-        this.isClient = false;
-        this.isAdmin  = false;
-        this.Form = new FormGroup({
-          id: new FormControl(''),
-          date: new FormControl('', Validators.required),
-          hours: new FormControl('', Validators.required),
-          message: new FormControl('', Validators.required),
-          done: new FormControl(false),
-        });
-      },
-    );
+  delete(item: any) {
+    this.postService.deletePost(item).subscribe(() => {
+      this.isClient = false;
+      this.isAdmin = false;
+      this.Form = new FormGroup({
+        id: new FormControl(''),
+        date: new FormControl('', Validators.required),
+        hours: new FormControl('', Validators.required),
+        message: new FormControl('', Validators.required),
+        done: new FormControl(false),
+      });
+    });
     if (this.isClient) {
       this.router.navigate(['/client', 'list']);
     } else if (this.isAdmin) {
       this.router.navigate(['/admin', 'list']);
     }
-   
   }
-
-
 
   modalOn() {
     this.modalActive = true;

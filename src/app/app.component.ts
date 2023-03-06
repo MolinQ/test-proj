@@ -7,9 +7,7 @@ import { AuthService } from './shared/services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
-  constructor(private auth: AuthService) {
-  }
+  constructor(private auth: AuthService) {}
 
   ngOnInit() {
     const userToken = localStorage.getItem('auth-token');
@@ -20,4 +18,3 @@ export class AppComponent implements OnInit {
     }
   }
 }
-

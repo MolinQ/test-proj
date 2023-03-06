@@ -1,111 +1,92 @@
-<div
-  class="list-form">
-
-  <a >
+<div class="list-form">
+  <a>
     <img
       class="log-out"
       (click)="auth.logOut()"
-      src="../../../assets/images/logout.png"  alt="none">
+      src="../../../assets/images/logout.png"
+      alt="none"
+    />
   </a>
-  <div class="list-upper-line" >
-   <h1>List</h1>
-  <button
-    *ngIf="showCreateButton"
-    type="button"
-    class="add-new-post-button" 
-    (click)="SelectedCreatePost()">
-    
-  New +
-  </button>
-</div>
+  <div class="list-upper-line">
+    <h1>List</h1>
+    <button
+      *ngIf="showCreateButton"
+      type="button"
+      class="add-new-post-button"
+      (click)="SelectedCreatePost()"
+    >
+      New +
+    </button>
+  </div>
 
-<div class="search-post-position">
-  <input
-    id="search"
-    class="list-form-search-post"
-    placeholder="Search"
-    type="text"
-    [(ngModel)]="searchText"
-  >
-</div>
-  <div
-    class="show-if-client"
-    *ngIf="showClientPost"
-  >
-  <div
-    class="posts-container">
-        <div
+  <div class="search-post-position">
+    <input
+      id="search"
+      class="list-form-search-post"
+      placeholder="Search"
+      type="text"
+      [(ngModel)]="searchText"
+    />
+  </div>
+  <div class="show-if-client" *ngIf="showClientPost">
+    <div class="posts-container">
+      <div
         class="post-wrapper"
         [class.approved]="item.done"
-          *ngFor="let item of filterPosts(), let idx=index"
-          (click)="selectPostClient(item)"
-        >
-          <strong class="post-text">
-            {{item.message}}
-          </strong>
+        *ngFor="let item of filterPosts(); let idx = index"
+        (click)="selectPostClient(item)"
+      >
+        <strong class="post-text">
+          {{ item.message }}
+        </strong>
 
-          <div
-            class="bottom-post-text">
-            <small
-              class="post-time">
-              {{item.hours | timeToNumber}}
-            </small>
+        <div class="bottom-post-text">
+          <small class="post-time">
+            {{ item.hours | timeToNumber }}
+          </small>
 
-            <small
-              class="post-date">
-              {{item.date | date:'d MMM y\''}}
-            </small>
-          </div>
+          <small class="post-date">
+            {{ item.date | date : "d MMM y'" }}
+          </small>
         </div>
       </div>
+    </div>
   </div>
 
   <div class="show-if-admin-wrapper">
-  <div
-    class="show-if-admin"
-    *ngIf="showAdminPost"
-  >
-  <div
-    *ngFor="let user of usersInPost,let usId = index"
-    class="posts-container">
-    <p
-      class="User_name">
-      {{user.name}}
-    </p>
-    <ng-container
-      *ngFor="let posts of userPost,let  idPost = index"
-    >
+    <div class="show-if-admin" *ngIf="showAdminPost">
       <div
-        *ngFor="let post of filterAdminPosts(posts)"
+        *ngFor="let user of usersInPost; let usId = index"
+        class="posts-container"
       >
-        <div
-          [class.approved]="post.done"
-          *ngIf="usId === idPost"
-          (click)="selectPostAdmin(post)"
-          class="post-wrapper"
-        >
-          <strong class="post-text">
-            {{post.message}}
-          </strong>
+        <p class="User_name">
+          {{ user.name }}
+        </p>
+        <ng-container *ngFor="let posts of userPost; let idPost = index">
+          <div *ngFor="let post of filterAdminPosts(posts)">
+            <div
+              [class.approved]="post.done"
+              *ngIf="usId === idPost"
+              (click)="selectPostAdmin(post)"
+              class="post-wrapper"
+            >
+              <strong class="post-text">
+                {{ post.message }}
+              </strong>
 
-          <div
-            class="bottom-post-text">
-            <small
-              class="post-time">
-              {{post.hours | timeToNumber}}
-            </small>
+              <div class="bottom-post-text">
+                <small class="post-time">
+                  {{ post.hours | timeToNumber }}
+                </small>
 
-            <small
-              class="post-date">
-              {{post.date | date:'d MMM y\''}}
-            </small>
+                <small class="post-date">
+                  {{ post.date | date : "d MMM y'" }}
+                </small>
+              </div>
+            </div>
           </div>
-        </div>
+        </ng-container>
       </div>
-    </ng-container>
-  </div>
+    </div>
   </div>
 </div>
-</div>
-
-

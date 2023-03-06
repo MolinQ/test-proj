@@ -1,67 +1,53 @@
-<form 
-class="registration-form"
-[formGroup]="form" (ngSubmit)="submit()">
-
+<form class="registration-form" [formGroup]="form" (ngSubmit)="submit()">
   <h1>Registration</h1>
 
   <div class="registration-form-input-wrapper">
-
     <input
-      [ngClass]="{invalid:form.get('name').touched && form.get('name').invalid}"
+      [ngClass]="{
+        invalid: form.get('name').touched && form.get('name').invalid
+      }"
       formControlName="name"
       type="text"
       class="login-form-input-email"
       id="registration"
       placeholder="Login"
-    >
+    />
 
     <input
-      [ngClass]="{invalid:form.get('password').touched && form.get('password').invalid}"
+      [ngClass]="{
+        invalid: form.get('password').touched && form.get('password').invalid
+      }"
       formControlName="password"
       type="password"
       id="password"
       placeholder="Password"
-    >
-    </div>
-    <div
-      class="registration-form-error"
-      *ngIf="form.get('name').touched && form.get('name').invalid"
-    >
-      <small
-      class="enter-email"
-        *ngIf="form.get('name').errors.required"
+    />
+  </div>
+  <div
+    class="registration-form-error"
+    *ngIf="form.get('name').touched && form.get('name').invalid"
+  >
+    <small class="enter-email" *ngIf="form.get('name').errors.required"
       >Enter email
-      </small>
+    </small>
   </div>
 
-    <div
-      class="registration-form-error"
-      *ngIf="form.get('password').dirty && form.get('password').invalid"
-    >
-      <small class="enter-password"
-        *ngIf="form.get('password').errors.required"
-      >Enter password
-      </small>
-
-      <small
-        *ngIf="form.get('password').errors.minlength"
-      >Password is too short.
-      <br/>Please enter at least
-        {{form.get('password').errors.minlength.requiredLength}} characters
-        now(
-        {{form.get('password').errors.minlength.actualLength}})
-      </small>
-    </div>
-
-
-
-  <button
-    [disabled]="form.invalid"
-    class="btn-submit"
-    type="submit"
-
+  <div
+    class="registration-form-error"
+    *ngIf="form.get('password').dirty && form.get('password').invalid"
   >
-  Create account
-  </button>
+    <small class="enter-password" *ngIf="form.get('password').errors.required"
+      >Enter password
+    </small>
 
+    <small *ngIf="form.get('password').errors.minlength"
+      >Password is too short. <br />Please enter at least
+      {{ form.get("password").errors.minlength.requiredLength }} characters now(
+      {{ form.get("password").errors.minlength.actualLength }})
+    </small>
+  </div>
+
+  <button [disabled]="form.invalid" class="btn-submit" type="submit">
+    Create account
+  </button>
 </form>

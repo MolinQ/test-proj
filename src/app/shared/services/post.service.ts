@@ -1,32 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../interfaces';
-import { Observable, Subject  } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-
-
 @Injectable({
-  providedIn:'root',
+  providedIn: 'root',
 })
 export class PostService {
-  public CurrentPost:any;
+  public CurrentPost: any;
 
-  public isCreatePost:boolean = false;
+  public isCreatePost: boolean = false;
 
-  public  isClientEdit:boolean = false;
+  public isClientEdit: boolean = false;
 
-  public isAdminEdit:boolean = false;
+  public isAdminEdit: boolean = false;
 
-
-  constructor(private http:HttpClient) {}
-
-
+  constructor(private http: HttpClient) {}
 
   getPost() {
     return this.http.get('http://localhost:3000/api/track');
   }
 
-  createPost(post:any):Observable<Post> {
+  createPost(post: any): Observable<Post> {
     return this.http.post<Post>('http://localhost:3000/api/track', post);
   }
 
@@ -34,11 +29,11 @@ export class PostService {
     return this.http.get('http://localhost:3000/api/track');
   }
 
-  updatePost(id:any, post:any) {
+  updatePost(id: any, post: any) {
     return this.http.patch(`http://localhost:3000/api/track/${id}`, post);
   }
 
-  deletePost(id:any) {
+  deletePost(id: any) {
     return this.http.delete(`http://localhost:3000/api/track/${id}`);
   }
 
@@ -46,7 +41,7 @@ export class PostService {
     return this.http.get('http://localhost:3000/api/users');
   }
 
-  getAdminPost(userId:any) {
+  getAdminPost(userId: any) {
     return this.http.get(`http://localhost:3000/api/track/${userId}`);
   }
 }

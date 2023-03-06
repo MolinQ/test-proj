@@ -1,51 +1,44 @@
-<form 
-class="login-form"
-[formGroup]="form" 
-(ngSubmit)="submit()">
-<div class="form-wrapper">
-  <h1>Login</h1>
+<form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-wrapper">
+    <h1>Login</h1>
 
-  <div class="login-form-input-wrapper">
-    <input 
-    class="login-form-input-email"
-    formControlName="name" 
-    type="text" 
-    id="login" 
-    placeholder="Login"/>
+    <div class="login-form-input-wrapper">
+      <input
+        class="login-form-input-email"
+        formControlName="name"
+        type="text"
+        id="login"
+        placeholder="Login"
+      />
 
-    <input
-    [ngClass]="{
-      invalid: form.get('password').touched && form.get('password').invalid
-    }"
-      class="login-form-input-password"
-      formControlName="password"
-      type="password"
-      id="password"
-      placeholder="Password"/>
+      <input
+        [ngClass]="{
+          invalid: form.get('password').touched && form.get('password').invalid
+        }"
+        class="login-form-input-password"
+        formControlName="password"
+        type="password"
+        id="password"
+        placeholder="Password"
+      />
     </div>
-    <div 
-    class="login-form-error"
-    *ngIf="form.get('name').touched && form.get('name').invalid">
+    <div
+      class="login-form-error"
+      *ngIf="form.get('name').touched && form.get('name').invalid"
+    >
       <small *ngIf="form.get('name').errors.required">Enter email </small>
     </div>
 
-    <div 
-    class="login-form-error"
-    *ngIf="form.get('password').touched && form.get('password').invalid">
+    <div
+      class="login-form-error"
+      *ngIf="form.get('password').touched && form.get('password').invalid"
+    >
       <small *ngIf="form.get('password').errors.required"
         >Enter password
       </small>
     </div>
   </div>
-  <button 
-  class="btn-submit"
-  type="submit">
-  Login
-</button>
+  <button class="btn-submit" type="submit">Login</button>
 
-  <a 
-  routerLink="/registration" 
-  class="registration-link">
-  Registration
-</a>
+  <a routerLink="/registration" class="registration-link"> Registration </a>
 </form>

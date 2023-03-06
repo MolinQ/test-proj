@@ -1,14 +1,11 @@
-
 .login-form {
   overflow: hidden;
-  height: 100vh ;
+  height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: #1f1e22;
-
-
 
   h1 {
     // text decoration
@@ -33,27 +30,26 @@
     background: rgba(49, 47, 54, 1);
     border: none;
     border-radius: 134px;
-    -webkit-box-shadow: inset 0 0 0 50px #312F36;
+    box-shadow: none;
+    -webkit-box-shadow: inset 0 0 0 50px #312f36;
     -webkit-text-fill-color: #fff;
 
-
-    font-family: 'MuseoModerno', Inter sans-serif;
-    color: #C1C0C2;
+    font-family: "MuseoModerno", Inter sans-serif;
+    color: #c1c0c2;
     font-style: normal;
     font-weight: 500;
     font-size: 0.95rem;
     line-height: 133%;
     padding: 0 30px;
 
-
     &::placeholder {
-      font-family: 'MuseoModerno', Inter sans-serif;
+      font-family: "MuseoModerno", Inter sans-serif;
       font-weight: 500;
       font-size: 0.95rem;
       line-height: 133%;
       /* identical to box height, or 26px */
-      color: #625F65;
-  
+      color: #625f65;
+
       -webkit-text-fill-color: rgba(98, 95, 101, 1);
     }
   }
@@ -64,9 +60,8 @@
     flex-direction: column;
   }
 
-
   .btn-submit {
-    font-family: 'MuseoModerno', Inter sans-serif;
+    font-family: "MuseoModerno", Inter sans-serif;
     height: 3.1rem;
     width: 16.75rem;
     margin-top: 0.75rem;
@@ -82,7 +77,7 @@
   }
 
   &-error {
-    font-family: 'MuseoModerno', Inter sans-serif;
+    font-family: "MuseoModerno", Inter sans-serif;
     color: red;
     margin-left: 1.5rem;
   }
@@ -101,4 +96,3 @@
     color: #c1c0c2;
   }
 }
-

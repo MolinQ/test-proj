@@ -3,21 +3,13 @@ import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
-
 @Injectable({
-  providedIn:'root',
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
+  constructor(private auth: AuthService, private router: Router) {}
 
-
-
-  constructor(
-    private auth:AuthService,
-    private router:Router,
-  ) {
-  }
-
-  canActivate():Observable<boolean> {
+  canActivate(): Observable<boolean> {
     if (this.auth.getToken()) {
       if (this.auth.isUser()) {
         return of(true);
@@ -36,5 +28,4 @@ export class AuthGuard implements CanActivate {
       return of(false);
     }
   }
-
 }

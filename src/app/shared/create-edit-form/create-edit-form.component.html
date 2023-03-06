@@ -1,126 +1,88 @@
-<form
-  [formGroup]="Form"
-  (ngSubmit)="submit()"
-  class="form-wrapper"
->
-
-<div class="form-title">
-
-  <h1 *ngIf="showEdit">
-    Edit
-  </h1>
-  <h1 *ngIf="showCreate">
-    Add new
-  </h1>
-</div>
+<form [formGroup]="Form" (ngSubmit)="submit()" class="form-wrapper">
+  <div class="form-title">
+    <h1 *ngIf="showEdit">Edit</h1>
+    <h1 *ngIf="showCreate">Add new</h1>
+  </div>
 
   <div class="form-input-wrapper">
-
     <input
       id="date"
       formControlName="date"
       type="Date"
       class="form-date-input"
       placeholder="Date"
+    />
+
+    <input
+      formControlName="hours"
+      id="time"
+      type="Time"
+      class="form-time-input"
+      placeholder="Time"
+    />
+
+    <textarea
+      placeholder="Note"
+      formControlName="message"
+      class="form-text-input"
     >
-
-  <input
-    formControlName="hours"
-    id="time"
-    type="Time"
-    class="form-time-input"
-    placeholder="Time">
-
-  <textarea
-    placeholder="Note"
-    formControlName="message"
-    class="form-text-input">
-  </textarea>
-
-</div>
-<div class="activated-wrapper">
-
-  <div class="checkbox-wrapper">
-  <label
-    id="post-text"
-    for="checkbox"
-    class="activated-post-label">
-    Is complete
-  </label>
-
-  <input
-    formControlName="done"
-    type="checkbox"
-    class="activated-post-checkbox"
-    id="checkbox">
-  '
+    </textarea>
   </div>
-  <div
-  *ngIf="!showEdit"
-  >
-    
-  </div>
+  <div class="activated-wrapper">
+    <div class="checkbox-wrapper">
+      <label id="post-text" for="checkbox" class="activated-post-label">
+        Is complete
+      </label>
+
+      <input
+        formControlName="done"
+        type="checkbox"
+        class="activated-post-checkbox"
+        id="checkbox"
+      />
+      '
+    </div>
+    <div *ngIf="!showEdit"></div>
     <a *ngIf="showEdit" class="delete-url">
       <img
         class="delete-button"
         alt="none"
         src="../../../assets/images/delete.png"
         (click)="modalOn()"
-      >
+      />
     </a>
-
   </div>
 
   <div class="submit-btn-wrapper">
+    <button
+      [disabled]="Form.invalid"
+      type="submit"
+      *ngIf="showEdit"
+      class="edit-button"
+    >
+      Edit
+    </button>
 
-  <button
-    [disabled]="Form.invalid"
-    type="submit"
-    *ngIf="showEdit"
-    class="edit-button">
-    Edit
-  </button>
-
-  <button
-    [disabled]="Form.invalid"
-    type="submit"
-    *ngIf="showCreate"
-    class="create-button">
-    Create
-  </button>
-
-</div>
-  <div class="modal-window-wrapper"
-  *ngIf="modalActive"
-  >
-
-
+    <button
+      [disabled]="Form.invalid"
+      type="submit"
+      *ngIf="showCreate"
+      class="create-button"
+    >
+      Create
+    </button>
+  </div>
+  <div class="modal-window-wrapper" *ngIf="modalActive">
     <div class="modal-text">
       <p><b>Delete task</b></p>
       <small>Are you sure you want to delete this task?</small>
     </div>
-    
 
     <div class="modal-button">
-      <button
-        (click)="modalOff()"
-        class="cancel-button">
-        No
-      </button>
+      <button (click)="modalOff()" class="cancel-button">No</button>
 
-      <button
-        (click)="delete(Form.value.id)"
-        class="accept-button">
-        Yes
-      </button>
-
+      <button (click)="delete(Form.value.id)" class="accept-button">Yes</button>
     </div>
   </div>
-  <div
-    class="modal-effect"
-    *ngIf="modalActive"
-  ></div>
+  <div class="modal-effect" *ngIf="modalActive"></div>
 </form>
-
-
-

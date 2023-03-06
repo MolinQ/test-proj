@@ -1,13 +1,12 @@
 .log-out {
   width: 1.5rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   margin: 0 auto;
   margin: 1rem;
 }
 
-
 .list-form {
-   height: 100vh;
+  height: 100vh;
   background-color: #1f1e22;
 
   h1 {
@@ -20,7 +19,6 @@
     text-align: center;
 
     color: #f6ead4;
-    
   }
 
   .list-upper-line {
@@ -29,34 +27,28 @@
     gap: 1rem;
   }
 
-
   .add-new-post-button {
-    padding: .0rem 1rem;
+    padding: 0rem 1rem;
     margin-right: -5.3rem;
     order: 2;
 
     width: 4.85rem;
     height: 2.2rem;
 
-
     background: rgba(255, 255, 255, 0.09);
     border-radius: 3rem;
     border: none;
 
     //  text
-    font-family: 'MuseoModerno', Inter sans-serif;
+    font-family: "MuseoModerno", Inter sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 0.75rem;
     line-height: 1.05rem;
     /* identical to box height */
 
-
-    color: #FFFFFF;
-
+    color: #ffffff;
   }
-
-
 
   input {
     height: 3.1rem;
@@ -65,27 +57,26 @@
     background: rgba(49, 47, 54, 1);
     border: none;
     border-radius: 6.7rem;
-    -webkit-box-shadow: inset 0 0 0 2.5rem #312F36;
+    box-shadow: none;
+    -webkit-box-shadow: inset 0 0 0 2.5rem #312f36;
     -webkit-text-fill-color: #fff;
 
-
-    font-family: 'MuseoModerno', Inter sans-serif;
-    color: #C1C0C2;
+    font-family: "MuseoModerno", Inter sans-serif;
+    color: #c1c0c2;
     font-style: normal;
     font-weight: 500;
     font-size: 0.95rem;
     line-height: 133%;
     padding: 0 1.5rem;
 
-
     &::placeholder {
-      font-family: 'MuseoModerno', Inter sans-serif;
+      font-family: "MuseoModerno", Inter sans-serif;
       font-weight: 500;
       font-size: 0.95rem;
       line-height: 133%;
       /* identical to box height, or 26px */
-      color: #625F65;
-  
+      color: #625f65;
+
       -webkit-text-fill-color: rgba(98, 95, 101, 1);
     }
   }
@@ -95,12 +86,11 @@
     justify-content: center;
   }
 
-
   .post-wrapper {
     &.approved {
       background-color: #272f28;
       box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
-      border-radius: 0.4rem
+      border-radius: 0.4rem;
     }
 
     /* Auto layout */
@@ -113,28 +103,26 @@
     height: 7.1rem;
     margin-top: 0.85rem;
     margin-bottom: 0.85rem;
-    padding: 0.2rem 0.5rem  ;
+    padding: 0.2rem 0.5rem;
 
-    background: #201D1E;
+    background: #201d1e;
     box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.25);
     border-radius: 0.4rem;
 
-
     .post-text {
-      word-wrap:break-word ;
+      word-wrap: break-word;
 
-      font-family: 'MuseoModerno', Inter sans-serif;
+      font-family: "MuseoModerno", Inter sans-serif;
       font-style: normal;
       font-weight: 500;
       font-size: 0.85rem;
       line-height: 1.35rem;
 
-      color: #FFFFFF;
+      color: #ffffff;
     }
 
     .post-date {
-
-      font-family: 'MuseoModerno', Inter sans-serif;
+      font-family: "MuseoModerno", Inter sans-serif;
       font-style: normal;
       font-weight: 500;
       font-size: 0.85rem;
@@ -144,8 +132,7 @@
     }
 
     .post-time {
-
-      font-family: 'MuseoModerno', Inter sans-serif;
+      font-family: "MuseoModerno", Inter sans-serif;
       font-style: normal;
       font-weight: 500;
       font-size: 0.85rem;
@@ -158,43 +145,33 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
-
     }
-
   }
   .show-if {
     &-client {
-    display: flex;
-    justify-content: center;
-    background-color: #1f1e22;
+      display: flex;
+      justify-content: center;
+      background-color: #1f1e22;
     }
 
     &-admin {
-        margin: 0 auto;
-        margin-top: 1.75rem;
+      margin: 0 auto;
+      margin-top: 1.75rem;
     }
   }
 
   .show-if-admin-wrapper {
-    display:flex;
+    display: flex;
     background-color: #1f1e22;
   }
 
   .User_name {
-
-    font-family: 'MuseoModerno', Inter sans-serif;
+    font-family: "MuseoModerno", Inter sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 0.85rem;
     line-height: 1.35rem;
 
-    color: #FFFFFF;
+    color: #ffffff;
   }
-  
-
-
 }
-
-
-
-
