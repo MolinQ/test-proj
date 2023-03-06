@@ -40,14 +40,16 @@ export class ListPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.postService.isAdminEdit = false;
+    this.postService.isClientEdit = false;
+    this.postService.isCreatePost = false;
     if (this.showClientPost) {
-      this.postService.getPost().pipe(
-        map(post => {
-          return post;
-        }),
-      ).toPromise().then(response => {
-        this.collection = response;
-      });
+      this.postService.getPost().subscribe(
+        (response) => {
+          this.changeDetection.detectChanges();
+          this.collection = response;
+        },
+      );
     }
     if (this.showAdminPost) {
       this.users = this.postService.getUsers().pipe(
@@ -92,6 +94,11 @@ export class ListPageComponent implements OnInit {
     this.AdminServices.selectedPost = post;
     this.postService.isAdminEdit = true;
     this.router.navigate(['/adminEdit', `${post.id}`]);
+  }
+
+  SelectedCreatePost() {
+    this.postService.isCreatePost = true; 
+    this.router.navigate(['/client', 'list', 'new']);
   }
 
 }

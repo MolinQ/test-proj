@@ -11,12 +11,12 @@ import { HttpClient } from '@angular/common/http';
 export class PostService {
   public CurrentPost:any;
 
-  public isClientEdit:boolean = false;
+  public isCreatePost:boolean = false;
+
+  public  isClientEdit:boolean = false;
 
   public isAdminEdit:boolean = false;
 
-
-  private postsSubject = new Subject<any[]>();
 
   constructor(private http:HttpClient) {}
 
@@ -26,7 +26,7 @@ export class PostService {
     return this.http.get('http://localhost:3000/api/track');
   }
 
-  createPost(post):Observable<Post> {
+  createPost(post:any):Observable<Post> {
     return this.http.post<Post>('http://localhost:3000/api/track', post);
   }
 
@@ -34,11 +34,11 @@ export class PostService {
     return this.http.get('http://localhost:3000/api/track');
   }
 
-  updatePost(id, post) {
+  updatePost(id:any, post:any) {
     return this.http.patch(`http://localhost:3000/api/track/${id}`, post);
   }
 
-  deletePost(id) {
+  deletePost(id:any) {
     return this.http.delete(`http://localhost:3000/api/track/${id}`);
   }
 
@@ -46,7 +46,7 @@ export class PostService {
     return this.http.get('http://localhost:3000/api/users');
   }
 
-  getAdminPost(userId) {
+  getAdminPost(userId:any) {
     return this.http.get(`http://localhost:3000/api/track/${userId}`);
   }
 }

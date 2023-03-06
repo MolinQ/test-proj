@@ -19,9 +19,9 @@ export class CreateEditFormComponent implements OnInit {
 
   isNewPost: boolean = false;
 
-  isEditClient: boolean = false;
+  isClient: boolean = false;
 
-  isEditAdmin: boolean = false;
+  isAdmin: boolean = false;
 
   fullTime:any = null;
 
@@ -61,12 +61,11 @@ export class CreateEditFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.route.snapshot.paramMap.keys.length === 0) {
+    if (this.postService.isCreatePost) {
+      
       this.isNewPost = true;
-      this.isEditClient = false;
-      this.isEditAdmin = false;
-
-      this.Form =  new FormGroup({
+      
+      this.Form  = new FormGroup({
         id: new FormControl(''),
         date: new FormControl('', Validators.required),
         hours: new FormControl('', Validators.required),
@@ -76,7 +75,7 @@ export class CreateEditFormComponent implements OnInit {
     }
 
     if (this.postService.isClientEdit) {
-      this.isEditClient = true;
+      this.isClient = true;
       this.postService.getCurrentPost().subscribe(
         (response) => {
           this.post = response;
@@ -92,7 +91,7 @@ export class CreateEditFormComponent implements OnInit {
     }
 
     if (this.postService.isAdminEdit) {
-      this.isEditAdmin = true;
+      this.isAdmin = true;
       this.Form = new FormGroup({
         id: new FormControl(this.AdminServices.selectedPost.id),
         date: new FormControl(this.AdminServices.selectedPost.date, Validators.required),
@@ -114,7 +113,7 @@ export class CreateEditFormComponent implements OnInit {
 
   submit() {
     this.FormatInForm();
-    if (this.isNewPost === true  && this.isEditClient === false && this.isEditAdmin === false) {
+    if (this.isNewPost === true  && this.isClient === false && this.isAdmin === false) {
       let pushPostForm = {
         date: this.Form.value.date,
         hours: +this.fullTime,
@@ -132,7 +131,7 @@ export class CreateEditFormComponent implements OnInit {
       );
     }
 
-    if (this.isNewPost === false  && this.isEditClient === true && this.isEditAdmin === false) {
+    if (this.isNewPost === false  && this.isClient === true && this.isAdmin === false) {
       let pushClientForm = {
         id: this.Form.value.id,
         date: this.Form.value.date,
@@ -145,10 +144,9 @@ export class CreateEditFormComponent implements OnInit {
         },
       );
       this.router.navigate(['/client', 'list']);
-      this.isEditClient = false;
-      this.postService.isClientEdit = false;
+      this.isClient = false;
     }
-    if (this.isNewPost === false  && this.isEditClient === false && this.isEditAdmin === true) {
+    if (this.isNewPost === false  && this.isClient === false && this.isAdmin === true) {
       let pushAdminForm = {
         id: this.Form.value.id,
         date: this.Form.value.date,
@@ -156,28 +154,35 @@ export class CreateEditFormComponent implements OnInit {
         message: this.Form.value.message,
         done: this.Form.value.done,
       };
-      this.postService.updatePost( this.Form.value.id, pushAdminForm).subscribe(
-        (response) => {
-          console.warn(response);
+      console.log(pushAdminForm);
+      this.postService.updatePost(this.Form.value.id, pushAdminForm).subscribe(
+        () => {
+          this.router.navigate(['/admin', 'list']);
+          this.isAdmin = false;
         },
       );
-      this.router.navigate(['/admin', 'list']);
-      this.isEditAdmin = false;
-      this.postService.isAdminEdit = false;
+      
     }
-
   }
 
   delete(item:any) {
+    
     this.postService.deletePost(item).subscribe(
-      (response) => {
-        console.warn(response);
-        this.modalActive = false;
+      () => {
+        this.isClient = false;
+        this.isAdmin  = false;
+        this.Form = new FormGroup({
+          id: new FormControl(''),
+          date: new FormControl('', Validators.required),
+          hours: new FormControl('', Validators.required),
+          message: new FormControl('', Validators.required),
+          done: new FormControl(false),
+        });
       },
     );
-    if (this.isEditClient) {
+    if (this.isClient) {
       this.router.navigate(['/client', 'list']);
-    } else if (this.isEditAdmin) {
+    } else if (this.isAdmin) {
       this.router.navigate(['/admin', 'list']);
     }
    
