@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { PostService } from '../services/post.service';
 import { Router } from '@angular/router';
@@ -40,14 +40,14 @@ export class ListPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.showClientPost);
-    console.log(this.showAdminPost);
     if (this.showClientPost) {
-      this.postService.getPost().subscribe(
-        (response) =>{
-          this.collection = response;
-        },
-      );
+      this.postService.getPost().pipe(
+        map(post => {
+          return post;
+        }),
+      ).toPromise().then(response => {
+        this.collection = response;
+      });
     }
     if (this.showAdminPost) {
       this.users = this.postService.getUsers().pipe(

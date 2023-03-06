@@ -175,7 +175,12 @@ export class CreateEditFormComponent implements OnInit {
         this.modalActive = false;
       },
     );
-    this.router.navigate(['/client', 'list']);
+    if (this.isEditClient) {
+      this.router.navigate(['/client', 'list']);
+    } else if (this.isEditAdmin) {
+      this.router.navigate(['/admin', 'list']);
+    }
+   
   }
 
 
