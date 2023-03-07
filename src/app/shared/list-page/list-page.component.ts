@@ -96,7 +96,7 @@ export class ListPageComponent implements OnInit {
     this.router.navigate(['/adminEdit', `${post.id}`]);
   }
 
-  SelectedCreatePost() {
+  selectedCreatePost() {
     this.postService.isCreatePost = true;
     this.router.navigate(['/client', 'list', 'new']);
   }

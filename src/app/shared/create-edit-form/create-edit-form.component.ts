@@ -116,7 +116,7 @@ export class CreateEditFormComponent implements OnInit {
     }
   }
 
-  FormatInForm() {
+  formatInForm() {
     //  time
     const timeString = this.Form.value.hours;
     const timeParts = timeString.split(':');
@@ -125,7 +125,7 @@ export class CreateEditFormComponent implements OnInit {
   }
 
   submit() {
-    this.FormatInForm();
+    this.formatInForm();
     if (
       this.isNewPost === true &&
       this.isClient === false &&
