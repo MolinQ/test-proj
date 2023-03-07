@@ -178,7 +178,6 @@ export class CreateEditFormComponent implements OnInit {
         message: this.Form.value.message,
         done: this.Form.value.done,
       };
-      console.log(pushAdminForm);
       this.postService
         .updatePost(this.Form.value.id, pushAdminForm)
         .subscribe(() => {
