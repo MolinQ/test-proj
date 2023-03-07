@@ -9,7 +9,6 @@
 
   h1 {
     // text decoration
-    font-family: "MuseoModerno", Inter sans-serif;
     font-style: normal;
     font-weight: 800;
     font-size: 1.8rem;
@@ -42,7 +41,6 @@
     padding: 0 30px;
 
     &::placeholder {
-      font-family: "MuseoModerno", Inter sans-serif;
       font-weight: 500;
       font-size: 0.95rem;
       line-height: 133%;
@@ -60,7 +58,6 @@
     flex-direction: column;
   }
   .btn-submit {
-    font-family: "MuseoModerno", Inter sans-serif;
 
     height: 3.1rem;
     width: 16.75rem;
@@ -81,7 +78,6 @@
     }
   }
   &-error {
-    font-family: "MuseoModerno", Inter sans-serif;
     color: red;
   }
   .enter-email {
