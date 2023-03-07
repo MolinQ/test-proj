@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { PostService } from '../services/post.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AdminService } from '../../admin/admin-services/admin.service';
 
 @Component({
@@ -37,9 +37,8 @@ export class CreateEditFormComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private postService: PostService,
-    private AdminServices: AdminService
+    private AdminServices: AdminService,
   ) {}
 
   formatMinutesToTime(minutes: number): string {

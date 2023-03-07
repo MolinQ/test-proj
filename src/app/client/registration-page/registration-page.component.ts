@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-registration-page',
@@ -11,8 +10,6 @@ import { Subscription } from 'rxjs';
 })
 export class RegistrationPageComponent implements OnInit {
   form: FormGroup;
-
-  aSub: Subscription;
 
   constructor(private auth: AuthService, private router: Router) {}
 

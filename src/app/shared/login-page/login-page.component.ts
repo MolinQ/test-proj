@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { AuthService } from '../services/auth.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +12,6 @@ import { Subscription } from 'rxjs';
 export class LoginPageComponent implements OnInit {
   form: FormGroup;
 
-  aSub: Subscription;
 
   constructor(
     private router: Router,
