@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export class LoginPageComponent implements OnInit, OnDestroy {
+export class LoginPageComponent implements OnInit {
   form: FormGroup;
 
   aSub: Subscription;
@@ -39,14 +39,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    if (this.aSub) {
-      this.aSub.unsubscribe();
-    }
-  }
-
   submit() {
-    this.aSub = this.auth.logIn(this.form.value).subscribe(
+    this.auth.logIn(this.form.value).subscribe(
       () => {
         this.router.navigate(['/client', 'list']);
         if (this.auth.userName === 'Admin' && this.auth.getToken() !== null) {

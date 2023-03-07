@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss'],
 })
-export class RegistrationPageComponent implements OnInit, OnDestroy {
+export class RegistrationPageComponent implements OnInit {
   form: FormGroup;
 
   aSub: Subscription;
@@ -26,14 +26,8 @@ export class RegistrationPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    if (this.aSub) {
-      this.aSub.unsubscribe();
-    }
-  }
-
   submit() {
-    this.aSub = this.auth.register(this.form.value).subscribe(
+    this.auth.register(this.form.value).subscribe(
       () => {
         this.router.navigate(['/login'], {
           queryParams: {
@@ -43,7 +37,7 @@ export class RegistrationPageComponent implements OnInit, OnDestroy {
       },
       (error) => {
         alert(error.error.message);
-      }
+      },
     );
   }
 }
