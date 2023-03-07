@@ -33,9 +33,9 @@
 
   <div
     class="registration-form-error"
-    *ngIf="form.get('password').dirty && form.get('password').invalid"
+    *ngIf="form.get('password').touched && form.get('password').invalid"
   >
-    <small class="enter-password" *ngIf="form.get('password').errors.required"
+    <small class="enter-password" *ngIf="form.get('password').errors.required "
       >Enter password
     </small>
 

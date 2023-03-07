@@ -9,6 +9,10 @@
   </a>
   <div class="list-upper-line">
     <h1>List</h1>
+    <div
+    class="list-upper-line-admin"
+    *ngIf="!showCreateButton"
+    ></div>
     <button
       *ngIf="showCreateButton"
       type="button"
