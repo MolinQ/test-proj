@@ -11,7 +11,6 @@
     line-height: 133%;
     text-align: center;
     margin-top: 2.9rem;
-
     color: #f6ead4;
   }
 
@@ -40,19 +39,15 @@
       font-weight: 500;
       font-size: 0.95rem;
       line-height: 133%;
-      /* identical to box height, or 26px */
       color: #625f65;
-
       -webkit-text-fill-color: rgba(98, 95, 101, 1);
     }
     &[type="date"]::-webkit-calendar-picker-indicator {
       filter: invert(1) sepia(100%) saturate(10000%) hue-rotate(180deg);
     }
-
     &[type="time"]::-webkit-calendar-picker-indicator {
       filter: invert(1) sepia(100%) saturate(10000%) hue-rotate(180deg);
     }
-
     &[type="Date"] {
       margin-top: 3.05rem;
     }
@@ -100,7 +95,6 @@
     align-items: center;
   }
 
- 
   .create-button,
   .edit-button {
     height: 3.1rem;
@@ -109,7 +103,6 @@
     background: #686082;
     border-radius: 134px;
     border: none;
-
     color: #f6ead4;
     font-style: normal;
     font-weight: 800;
@@ -137,22 +130,17 @@
   top: -28.6rem;
   width: 14rem;
   height: 8.65rem;
-
   background: #fafafa;
-  /* 24dp — Elevation */
-
   box-shadow: 0 24px 38px rgba(0, 0, 0, 0.14), 0px 9px 46px rgba(0, 0, 0, 0.12),
     0px 11px 15px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
 
   p,
   small {
-
     font-style: normal;
     font-weight: 500;
     font-size: 1rem;
     line-height: 1.2rem;
-
     color: rgba(0, 0, 0);
   }
 
@@ -164,17 +152,13 @@
   .cancel-button {
     width: 3.8rem;
     height: 1.55rem;
-
     background: rgba(104, 96, 130, 1);
     border-radius: 6.7rem;
     border: none;
-
     font-style: normal;
     font-weight: 800;
     font-size: 0.7rem;
     line-height: 133%;
-    /* or 19px */
-
     color: #f6ead4;
   }
   .cancel-button {
