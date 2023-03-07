@@ -13,8 +13,7 @@
       *ngIf="showCreateButton"
       type="button"
       class="add-new-post-button"
-      (click)="SelectedCreatePost()"
-    >
+      (click)="SelectedCreatePost()">
       New +
     </button>
   </div>
@@ -22,14 +21,13 @@
   <div class="search-post-position">
     <input
       id="search"
-      class="list-form-search-post"
       placeholder="Search"
       type="text"
       [(ngModel)]="searchText"
     />
   </div>
   <div class="show-if-client" *ngIf="showClientPost">
-    <div class="posts-container">
+    <div>
       <div
         class="post-wrapper"
         [class.approved]="item.done"
@@ -57,7 +55,6 @@
     <div class="show-if-admin" *ngIf="showAdminPost">
       <div
         *ngFor="let user of usersInPost; let usId = index"
-        class="posts-container"
       >
         <p class="User_name">
           {{ user.name }}

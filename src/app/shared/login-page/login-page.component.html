@@ -4,7 +4,6 @@
 
     <div class="login-form-input-wrapper">
       <input
-        class="login-form-input-email"
         formControlName="name"
         type="text"
         id="login"
@@ -15,7 +14,6 @@
         [ngClass]="{
           invalid: form.get('password').touched && form.get('password').invalid
         }"
-        class="login-form-input-password"
         formControlName="password"
         type="password"
         id="password"
