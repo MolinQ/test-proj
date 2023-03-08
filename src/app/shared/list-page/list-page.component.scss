@@ -21,16 +21,17 @@
   .list-upper-line {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-left: 5.3rem;
   }
 
-  .list-upper-line-admin {
-    margin-right: 4.5rem;
+  .list-upper-line-without-button {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-left: 4.5rem;
   }
 
   .add-new-post-button {
-    padding: 0rem 1rem;
+    padding: 0 1rem;
     order: 2;
     width: 4.85rem;
     height: 2.2rem;

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, Input, OnInit} from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { PostService } from '../services/post.service';
 import { Router } from '@angular/router';
@@ -35,6 +35,7 @@ export class ListPageComponent implements OnInit {
     private AdminServices: AdminService,
     private router: Router,
     private changeDetection: ChangeDetectorRef,
+    private elementRef: ElementRef,
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +54,7 @@ export class ListPageComponent implements OnInit {
         .pipe(
           map((user) => {
             return user;
-          })
+          }),
         )
         .toPromise()
         .then((response) => {
