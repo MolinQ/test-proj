@@ -27,14 +27,6 @@ export class LoginPageComponent implements OnInit {
         Validators.minLength(8),
       ]),
     });
-
-    this.route.queryParams.subscribe((param: Params) => {
-      if (param.registered) {
-        //  авторизация прошла успешно
-      } else if (param.accessDenied) {
-        // нужно авторизоваться
-      }
-    });
   }
 
   submit() {
