@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { PostService } from '../services/post.service';
 import { Router } from '@angular/router';
 import { AdminService } from '../../admin/admin-services/admin.service';
-import { map } from 'rxjs';
+import {forkJoin, map, switchMap} from 'rxjs';
 
 @Component({
   selector: 'app-list-page',
@@ -29,6 +29,8 @@ export class ListPageComponent implements OnInit {
 
   searchText: string = '';
 
+  posts:any;
+
   constructor(
     public auth: AuthService,
     private postService: PostService,
@@ -43,32 +45,36 @@ export class ListPageComponent implements OnInit {
     this.postService.isClientEdit = false;
     this.postService.isCreatePost = false;
     if (this.showClientPost) {
-      this.postService.getPost().subscribe((response) => {
-        this.changeDetection.detectChanges();
-        this.collection = response;
-      });
+      this.postService.getPost().subscribe(
+        (response) => {
+          this.changeDetection.detectChanges();
+          this.collection = response;
+        },
+      );
     }
     if (this.showAdminPost) {
-      this.users = this.postService
-        .getUsers()
-        .pipe(
-          map((user) => {
-            return user;
-          }),
-        )
-        .toPromise()
-        .then((response) => {
-          this.users = response;
-          this.users.forEach((user: any) => {
-            this.postService.getAdminPost(user.id).subscribe((resp) => {
-              let post: any = resp;
-              if (post.length !== 0) {
-                this.userPost.push(post);
-                this.usersInPost.push(user);
+      this.users = this.postService.getUsers().pipe(
+        switchMap(users => {
+          this.users = users;
+          return forkJoin(this.users.map(user => this.postService.getAdminPost(user.id))).pipe(
+            map(posts => {
+              this.posts = posts;
+              const filteredUsers = [];
+              const filteredPosts = [];
+              for (let i = 0; i < this.posts.length; i++) {
+                if (posts[i].length !== 0) {
+                  filteredUsers.push(users[i]);
+                  filteredPosts.push(posts[i]);
+                }
               }
-            });
-          });
-        });
+              this.userPost = filteredPosts;
+              return filteredUsers;
+            }),
+          );
+        }),
+      ).subscribe(users => {
+        this.usersInPost = users;
+      });
     }
   }
 
