@@ -27,7 +27,7 @@ export class CreateEditFormComponent implements OnInit {
 
   post: any;
 
-  Form = new FormGroup({
+  form = new FormGroup({
     id: new FormControl(''),
     date: new FormControl('', Validators.required),
     hours: new FormControl('', Validators.required),
@@ -63,7 +63,7 @@ export class CreateEditFormComponent implements OnInit {
     if (this.postService.isCreatePost) {
       this.isNewPost = true;
 
-      this.Form = new FormGroup({
+      this.form = new FormGroup({
         id: new FormControl(''),
         date: new FormControl('', Validators.required),
         hours: new FormControl('', Validators.required),
@@ -76,7 +76,7 @@ export class CreateEditFormComponent implements OnInit {
       this.isClient = true;
       this.postService.getCurrentPost().subscribe((response) => {
         this.post = response;
-        this.Form = new FormGroup({
+        this.form = new FormGroup({
           id: new FormControl(this.postService.CurrentPost.id),
           date: new FormControl(
             this.postService.CurrentPost.date,
@@ -97,7 +97,7 @@ export class CreateEditFormComponent implements OnInit {
 
     if (this.postService.isAdminEdit) {
       this.isAdmin = true;
-      this.Form = new FormGroup({
+      this.form = new FormGroup({
         id: new FormControl(this.AdminServices.selectedPost.id),
         date: new FormControl(
           this.AdminServices.selectedPost.date,
@@ -118,7 +118,7 @@ export class CreateEditFormComponent implements OnInit {
 
   formatInForm() {
     //  time
-    const timeString = this.Form.value.hours;
+    const timeString = this.form.value.hours;
     const timeParts = timeString.split(':');
 
     this.fullTime = +timeParts[0] * 60 + +timeParts[1];
@@ -132,10 +132,10 @@ export class CreateEditFormComponent implements OnInit {
       this.isAdmin === false
     ) {
       let pushPostForm = {
-        date: this.Form.value.date,
+        date: this.form.value.date,
         hours: +this.fullTime,
-        message: this.Form.value.message,
-        done: this.Form.value.done,
+        message: this.form.value.message,
+        done: this.form.value.done,
       };
       this.postService.createPost(pushPostForm).subscribe(
         () => {
@@ -154,14 +154,14 @@ export class CreateEditFormComponent implements OnInit {
       this.isAdmin === false
     ) {
       let pushClientForm = {
-        id: this.Form.value.id,
-        date: this.Form.value.date,
+        id: this.form.value.id,
+        date: this.form.value.date,
         hours: +this.fullTime,
-        message: this.Form.value.message,
-        done: this.Form.value.done,
+        message: this.form.value.message,
+        done: this.form.value.done,
       };
       this.postService
-        .updatePost(this.Form.value.id, pushClientForm)
+        .updatePost(this.form.value.id, pushClientForm)
         .subscribe(() => {});
       this.router.navigate(['/client', 'list']);
       this.isClient = false;
@@ -172,14 +172,14 @@ export class CreateEditFormComponent implements OnInit {
       this.isAdmin === true
     ) {
       let pushAdminForm = {
-        id: this.Form.value.id,
-        date: this.Form.value.date,
+        id: this.form.value.id,
+        date: this.form.value.date,
         hours: +this.fullTime,
-        message: this.Form.value.message,
-        done: this.Form.value.done,
+        message: this.form.value.message,
+        done: this.form.value.done,
       };
       this.postService
-        .updatePost(this.Form.value.id, pushAdminForm)
+        .updatePost(this.form.value.id, pushAdminForm)
         .subscribe(() => {
           this.router.navigate(['/admin', 'list']);
           this.isAdmin = false;
@@ -191,7 +191,7 @@ export class CreateEditFormComponent implements OnInit {
     this.postService.deletePost(item).subscribe(() => {
       this.isClient = false;
       this.isAdmin = false;
-      this.Form = new FormGroup({
+      this.form = new FormGroup({
         id: new FormControl(''),
         date: new FormControl('', Validators.required),
         hours: new FormControl('', Validators.required),

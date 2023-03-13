@@ -8,13 +8,12 @@
     />
   </a>
   <div [ngClass]="{'list-upper-line-without-button': showCreateButton, 'list-upper-line': !showCreateButton}">
-    <h1 >List</h1>
+    <h1>List</h1>
     <button
       *ngIf="showCreateButton"
       type="button"
       class="add-new-post-button"
-      (click)="selectedCreatePost()"
-    >
+      (click)="selectedCreatePost()">
       New +
     </button>
   </div>
@@ -24,8 +23,7 @@
       id="search"
       placeholder="Search"
       type="text"
-      [(ngModel)]="searchText"
-    />
+      [(ngModel)]="searchText"/>
   </div>
   <div class="show-if-client" *ngIf="showClientPost">
     <div>
@@ -55,7 +53,7 @@
   <div class="show-if-admin-wrapper">
     <div class="show-if-admin" *ngIf="showAdminPost">
       <div *ngFor="let user of usersInPost; let usId = index">
-        <p class="User-name">
+        <p class="user-name">
           {{ user.name }}
         </p>
         <ng-container *ngFor="let posts of userPost; let idPost = index">

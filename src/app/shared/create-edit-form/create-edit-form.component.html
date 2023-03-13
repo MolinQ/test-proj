@@ -1,4 +1,4 @@
-<form [formGroup]="Form" (ngSubmit)="submit()" class="form-wrapper">
+<form [formGroup]="form" (ngSubmit)="submit()" class="form-wrapper">
   
     <h1 *ngIf="showEdit">Edit</h1>
     <h1 *ngIf="showCreate">Add new</h1>
@@ -51,7 +51,7 @@
 
   <div class="submit-btn-wrapper">
     <button
-      [disabled]="Form.invalid"
+      [disabled]="form.invalid"
       type="submit"
       *ngIf="showEdit"
       class="edit-button"
@@ -60,7 +60,7 @@
     </button>
 
     <button
-      [disabled]="Form.invalid"
+      [disabled]="form.invalid"
       type="submit"
       *ngIf="showCreate"
       class="create-button">
@@ -76,7 +76,7 @@
     <div class="modal-button">
       <button (click)="modalOff()" class="cancel-button">No</button>
 
-      <button (click)="delete(Form.value.id)" class="accept-button">Yes</button>
+      <button (click)="delete(form.value.id)" class="accept-button">Yes</button>
     </div>
   </div>
   <div class="modal-effect" *ngIf="modalActive"></div>
